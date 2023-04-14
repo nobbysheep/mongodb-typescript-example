@@ -1,27 +1,15 @@
 import express from "express";
 import { connectToDatabase } from "./services/database.service";
-import { gamesRouter } from "./routes/games.router";
+import { humansRouter } from "./routes/humans.router";
+import { getDates } from "./shared/dates";
 
 const app = express();
 const port = 8080; // default port to listen
 
-/*
-// ** TODO ** Replace this code with a call to your games router class to handle all calls to /games endpoint
-app.get("/", (req, res) => {
-    res.send("Hello world!");
-});
-
-// start the Express server
-app.listen(port, () => {
-    console.log(`server started at http://localhost:${port}`);
-
-    // ** TODO ** Call to Game Service to initiate connection
-});
-*/
 connectToDatabase()
     .then(() => {
         
-        app.use("/games", gamesRouter);
+        app.use("/humans", humansRouter);
         
         app.use("/", (req, res) => {
             res.send("Hello world!");
@@ -35,3 +23,6 @@ connectToDatabase()
         console.error("Database connection failed", error);
         process.exit();
     });
+
+const dates = getDates(new Date(2018, 0, 30, 11, 30), new Date(2018, 2, 2, 23, 59, 59)); 
+console.log(dates);

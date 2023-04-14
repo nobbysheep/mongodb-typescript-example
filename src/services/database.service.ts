@@ -5,7 +5,7 @@ import * as dotenv from "dotenv";
 
 // Global Variables
 
-export const collections: { games?: mongoDB.Collection } = {};
+export const collections: { humans?: mongoDB.Collection } = {};
 
 // Initialize Connection
 
@@ -18,11 +18,11 @@ export async function connectToDatabase() {
 
     const db: mongoDB.Db = client.db(process.env.DB_NAME);
 
-    const gamesCollection: mongoDB.Collection = db.collection(process.env.GAMES_COLLECTION_NAME);
+    const humansCollection: mongoDB.Collection = db.collection(process.env.HUMANS_COLLECTION_NAME);
 
-    collections.games = gamesCollection;
+    collections.humans = humansCollection;
 
     console.log(
-        `Successfully connected to database: ${db.databaseName} and collection: ${gamesCollection.collectionName}`,
+        `Successfully connected to database: ${db.databaseName} and collection: ${humansCollection.collectionName}`,
     );
 }
