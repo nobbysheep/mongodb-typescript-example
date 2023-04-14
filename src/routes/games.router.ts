@@ -14,7 +14,7 @@ gamesRouter.use(express.json());
 // GET
 gamesRouter.get("/", async (_req: Request, res: Response) => {
     try {
-       const games = (await collections.games.find({}).toArray()) as unknown as Game[];
+        const games = (await collections.games.find({}).toArray()) as unknown as Game[];
 
         res.status(200).send(games);
     } catch (error) {
@@ -26,7 +26,6 @@ gamesRouter.get("/:id", async (req: Request, res: Response) => {
     const id = req?.params?.id;
 
     try {
-        
         const query = { _id: new ObjectId(id) };
         const game = (await collections.games.findOne(query)) as unknown as Game;
 
@@ -60,7 +59,7 @@ gamesRouter.put("/:id", async (req: Request, res: Response) => {
     try {
         const updatedGame: Game = req.body as Game;
         const query = { _id: new ObjectId(id) };
-      
+
         const result = await collections.games.updateOne(query, { $set: updatedGame });
 
         result
