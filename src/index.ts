@@ -20,8 +20,13 @@ app.listen(port, () => {
 */
 connectToDatabase()
     .then(() => {
+        
         app.use("/games", gamesRouter);
-
+        
+        app.use("/", (req, res) => {
+            res.send("Hello world!");
+        });
+        
         app.listen(port, () => {
             console.log(`Server started at http://localhost:${port}`);
         });
