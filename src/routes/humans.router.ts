@@ -3,7 +3,7 @@
 import express, { Request, Response } from "express";
 import { ObjectId } from "mongodb";
 import { collections } from "../services/database.service";
-import Human from "../models/humans";
+import Human from "../models/human";
 
 // Global Config
 
@@ -14,9 +14,9 @@ humansRouter.use(express.json());
 // GET
 humansRouter.get("/", async (_req: Request, res: Response) => {
     try {
-        const human = (await collections.humans.find({}).toArray()) as unknown as Human[];
+        const humans = (await collections.humans.find({}).toArray()) as unknown as Human[];
 
-        res.status(200).send(Human);
+        res.status(200).send(humans);
     } catch (error) {
         res.status(500).send(error.message);
     }
@@ -30,7 +30,7 @@ humansRouter.get("/:id", async (req: Request, res: Response) => {
         const human = (await collections.humans.findOne(query)) as unknown as Human;
 
         if (human) {
-            res.status(200).send(Human);
+            res.status(200).send(human);
         }
     } catch (error) {
         res.status(404).send(`Unable to find matching document with id: ${req.params.id}`);
