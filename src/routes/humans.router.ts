@@ -14,7 +14,7 @@ humansRouter.use(express.json());
 // GET
 humansRouter.get("/", async (_req: Request, res: Response) => {
     try {
-        const games = (await collections.humans.find({}).toArray()) as unknown as Human[];
+        const human = (await collections.humans.find({}).toArray()) as unknown as Human[];
 
         res.status(200).send(Human);
     } catch (error) {
@@ -27,9 +27,9 @@ humansRouter.get("/:id", async (req: Request, res: Response) => {
 
     try {
         const query = { _id: new ObjectId(id) };
-        const game = (await collections.humans.findOne(query)) as unknown as Human;
+        const human = (await collections.humans.findOne(query)) as unknown as Human;
 
-        if (game) {
+        if (human) {
             res.status(200).send(Human);
         }
     } catch (error) {

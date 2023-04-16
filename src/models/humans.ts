@@ -4,7 +4,7 @@ import { ObjectId } from "mongodb";
 
 // Class Implementation
 
-export default class Humans {
+export default class Human {
     constructor(
         public nameOfHuman: string, 
         public typeOfHuman: string, 
