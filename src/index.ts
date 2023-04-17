@@ -1,5 +1,5 @@
 import express from "express";
-import { connectToDatabase } from "./services/database.service";
+import { connectToDatabase } from "./services/humans.database.service";
 import { humansRouter } from "./routes/humans.router";
 import { getDates } from "./shared/dates";
 
