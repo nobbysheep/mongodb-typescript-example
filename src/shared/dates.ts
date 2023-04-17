@@ -1,3 +1,5 @@
+// Dates generation
+
 export const getDates = (startDate: Date, endDate: Date) => {
   const dates = []
   let currentDate = startDate
