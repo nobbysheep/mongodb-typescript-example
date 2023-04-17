@@ -7,8 +7,9 @@ import { catagoriesRouter } from "./routes/catagories.router";
 
 import { humansRouter } from "./routes/humans.router";
 import { getDates } from "./utils/dates";
-import { populateDates } from "./utils/dates";
+import { populateDates } from "./utils/populateDates";
 import { activitiesRouter } from "./routes/activities.router";
+import { datesRouter } from "./routes/dates.router";
 
 const app = express();
 const port = 8080; // default port to listen
@@ -25,14 +26,7 @@ humansConnectToDatabase()
 
         app.use("/catagories", catagoriesRouter);
 
-        app.use("/dates", (req, res) => {
-            const rangeDates = getDates({
-                startDate: new Date(2022, 0, 1, 0, 0),
-                endDate: new Date(2023, 12, 31, 23, 59, 59),
-            });
-            res.send(rangeDates);
-            const pushDates = populateDates({ dateArray: rangeDates });
-        });
+        app.use("/dates", datesRouter);
 
         app.use("/", (req, res) => {
             res.send("Hello world!");
