@@ -28,6 +28,6 @@ export class Catagory {
     constructor(public catagoryName: string, public catagoryDescription: string, public id?: ObjectId) {}
 }
 
-export class Dates {
-    constructor(public fullDate: Date, public wkNumber: number) {}
+export class calendarDates {
+    constructor(public fullDate: Date, public wkNumber: number, public id?: ObjectId) {}
 }
