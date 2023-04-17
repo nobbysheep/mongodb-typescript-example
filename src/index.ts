@@ -1,18 +1,29 @@
 import express from "express";
-import { connectToDatabase } from "./services/humans.database.service";
+import { humansConnectToDatabase } from "./services/humans.database.service";
+import { datesConnectToDatabase } from "./services/dates.database.service";
+import { activitiesConnectToDatabase } from "./services/activities.database.service";
+
 import { humansRouter } from "./routes/humans.router";
-import { getDates } from "./shared/dates";
+import { getDates } from "./utils/dates";
+import { populateDates } from "./utils/dates";
 
 const app = express();
 const port = 8080; // default port to listen
 
-connectToDatabase()
+datesConnectToDatabase();
+activitiesConnectToDatabase();
+
+humansConnectToDatabase()
     .then(() => {
         app.use("/humans", humansRouter);
 
         app.use("/dates", (req, res) => {
-            const rangeDates = getDates(new Date(2022, 0, 1, 0, 0), new Date(2023, 12, 31, 23, 59, 59));
+            const rangeDates = getDates({
+                startDate: new Date(2022, 0, 1, 0, 0),
+                endDate: new Date(2023, 12, 31, 23, 59, 59),
+            });
             res.send(rangeDates);
+            const pushDates = populateDates({ dateArray: rangeDates });
         });
 
         app.use("/", (req, res) => {
@@ -27,6 +38,3 @@ connectToDatabase()
         console.error("Database connection failed", error);
         process.exit();
     });
-
-// const dates = getDates(new Date(2022, 0, 1, 0, 0), new Date(2023, 12, 31, 23, 59, 59));
-// console.log(dates);

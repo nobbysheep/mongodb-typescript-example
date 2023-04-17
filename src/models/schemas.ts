@@ -27,3 +27,7 @@ export class Activity {
 export class Catagory {
     constructor(public catagoryName: string, public catagoryDescription: string, public id?: ObjectId) {}
 }
+
+export class Dates {
+    constructor(public fullDate: Date, public wkNumber: number) {}
+}

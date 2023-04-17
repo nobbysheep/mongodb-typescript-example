@@ -9,7 +9,7 @@ export const collections: { humans?: mongoDB.Collection } = {};
 
 // Initialize Connection
 
-export async function connectToDatabase() {
+export async function humansConnectToDatabase(): Promise<void> {
     dotenv.config();
 
     const client: mongoDB.MongoClient = new mongoDB.MongoClient(process.env.DB_CONN_STRING);
