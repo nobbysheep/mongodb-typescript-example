@@ -5,7 +5,7 @@ import { ObjectId } from "mongodb";
 import { collections } from "../services/dates.database.service";
 import { calendarDates } from "../models/schemas";
 import { populateDates } from "../utils/populateDates";
-import { dateRange } from "../utils/populateDates";
+import { getDates } from "../utils/dates";
 
 // Global Config
 
@@ -30,9 +30,13 @@ datesRouter.post("/", async (req: Request, res: Response) => {
 
 datesRouter.post("/populate", async (req: Request, res:Response) => {
     try {
-        const pushDates = populateDates({ dateArray: dateRange });
+        const dateRange = getDates({
+            startDate: new Date(2022, 0, 1, 0, 0),
+            endDate: new Date(2023, 12, 31, 23, 59, 59),
+        });
         for (let i = 0; i < dateRange.length; i++) {
-            const result = await collections.dates.insertOne(dateRange[i]);
+            const result = await collections.dates.insertOne(dateRange[i].toString);
+
         result
             ? res.status(201).send(`Successfully created a new date with id ${result.insertedId}`)
             : res.status(500).send("Failed to create a new date.");

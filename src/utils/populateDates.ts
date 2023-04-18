@@ -1,11 +1,5 @@
 // Populate DB with array of dates and ISO week numbers
 import { getWeekNumberFromISOString } from "../utils/getWeekNumbers";
-import { getDates } from "../utils/dates";
-
-export const dateRange = getDates({
-    startDate: new Date(2022, 0, 1, 0, 0),
-    endDate: new Date(2023, 12, 31, 23, 59, 59),
-});
 
 export function populateDates({ dateArray }: { dateArray: Date[]; }) {
     console.log(dateArray);
