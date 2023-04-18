@@ -10,7 +10,6 @@ import { Activity } from "../models/schemas";
 export const activitiesRouter = express.Router();
 const collections = activitiesCollections;
 
-
 activitiesRouter.use(express.json());
 
 // GET

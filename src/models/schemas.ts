@@ -30,6 +30,6 @@ export class Catagory {
     constructor(public catagoryName: string, public catagoryDescription: string, public id?: ObjectId) {}
 }
 
-export class calendarDates {
+export class calendarDate {
     constructor(public fullDate: string, public wkNumber: number, public id?: ObjectId) {}
 }

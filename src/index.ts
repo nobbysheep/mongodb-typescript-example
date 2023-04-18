@@ -17,7 +17,7 @@ connectToDatabase()
             
         app.use("/humans", humansRouter);
 
-        app.use("/activies", activitiesRouter);
+        app.use("/activities", activitiesRouter);
 
         app.use("/catagories", catagoriesRouter);
 
