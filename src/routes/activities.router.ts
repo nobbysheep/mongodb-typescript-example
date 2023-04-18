@@ -8,13 +8,15 @@ import { Activity } from "../models/schemas";
 // Global Config
 
 export const activitiesRouter = express.Router();
+const collections = activitiesCollections;
+
 
 activitiesRouter.use(express.json());
 
 // GET
 activitiesRouter.get("/", async (_req: Request, res: Response) => {
     try {
-        const activities = (await activitiesCollections.activities.find({}).toArray()) as unknown as Activity[];
+        const activities = (await collections.activities.find({}).toArray()) as unknown as Activity[];
 
         res.status(200).send(activities);
     } catch (error) {

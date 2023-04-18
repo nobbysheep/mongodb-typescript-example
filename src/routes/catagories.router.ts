@@ -8,13 +8,14 @@ import { Catagory } from "../models/schemas";
 // Global Config
 
 export const catagoriesRouter = express.Router();
+const collections = catagoriesCollections;
 
 catagoriesRouter.use(express.json());
 
 // GET
 catagoriesRouter.get("/", async (_req: Request, res: Response) => {
     try {
-        const catagories = (await catagoriesCollections.catagories.find({}).toArray()) as unknown as Catagory[];
+        const catagories = (await collections.catagories.find({}).toArray()) as unknown as Catagory[];
 
         res.status(200).send(catagories);
     } catch (error) {

@@ -10,6 +10,7 @@ import { getDates } from "../utils/dates";
 // Global Config
 
 export const datesRouter = express.Router();
+const collections = datesCollections;
 
 datesRouter.use(express.json());
 
@@ -17,7 +18,7 @@ datesRouter.use(express.json());
 datesRouter.post("/", async (req: Request, res: Response) => {
     try {
         const newDate = req.body as calendarDates;
-        const result = await datesCollections.dates.insertOne(newDate);
+        const result = await collections.dates.insertOne(newDate);
 
         result
             ? res.status(201).send(`Successfully created a new date with id ${result.insertedId}`)

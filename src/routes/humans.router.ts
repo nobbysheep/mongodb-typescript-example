@@ -8,13 +8,15 @@ import { Human } from "../models/schemas";
 // Global Config
 
 export const humansRouter = express.Router();
+const collections = humansCollections;
+
 
 humansRouter.use(express.json());
 
 // GET
 humansRouter.get("/", async (_req: Request, res: Response) => {
     try {
-        const humans = (await humansCollections.humans.find({}).toArray()) as unknown as Human[];
+        const humans = (await collections.humans.find({}).toArray()) as unknown as Human[];
 
         res.status(200).send(humans);
     } catch (error) {
