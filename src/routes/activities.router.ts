@@ -2,7 +2,7 @@
 
 import express, { Request, Response } from "express";
 import { ObjectId } from "mongodb";
-import { collections } from "../services/activities.database.service";
+import { activitiesCollections } from "../services/activities.database.service";
 import { Activity } from "../models/schemas";
 
 // Global Config
@@ -14,7 +14,7 @@ activitiesRouter.use(express.json());
 // GET
 activitiesRouter.get("/", async (_req: Request, res: Response) => {
     try {
-        const activities = (await collections.activities.find({}).toArray()) as unknown as Activity[];
+        const activities = (await activitiesCollections.activities.find({}).toArray()) as unknown as Activity[];
 
         res.status(200).send(activities);
     } catch (error) {

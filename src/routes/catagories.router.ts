@@ -2,7 +2,7 @@
 
 import express, { Request, Response } from "express";
 import { ObjectId } from "mongodb";
-import { collections } from "../services/catagories.database.service";
+import { catagoriesCollections } from "../services/catagories.database.service";
 import { Catagory } from "../models/schemas";
 
 // Global Config
@@ -14,7 +14,7 @@ catagoriesRouter.use(express.json());
 // GET
 catagoriesRouter.get("/", async (_req: Request, res: Response) => {
     try {
-        const catagories = (await collections.catagories.find({}).toArray()) as unknown as Catagory[];
+        const catagories = (await catagoriesCollections.catagories.find({}).toArray()) as unknown as Catagory[];
 
         res.status(200).send(catagories);
     } catch (error) {

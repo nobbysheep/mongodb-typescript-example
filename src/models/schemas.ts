@@ -20,6 +20,8 @@ export class Activity {
         public activityName: string,
         public activityDescription: string,
         public activityCatagory: string,
+        public activityDate: Date,
+        public activityDurationHours: number,
         public id?: ObjectId,
     ) {}
 }

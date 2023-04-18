@@ -2,7 +2,7 @@
 
 import express, { Request, Response } from "express";
 import { ObjectId } from "mongodb";
-import { collections } from "../services/humans.database.service";
+import { humansCollections } from "../services/humans.database.service";
 import { Human } from "../models/schemas";
 
 // Global Config
@@ -14,7 +14,7 @@ humansRouter.use(express.json());
 // GET
 humansRouter.get("/", async (_req: Request, res: Response) => {
     try {
-        const humans = (await collections.humans.find({}).toArray()) as unknown as Human[];
+        const humans = (await humansCollections.humans.find({}).toArray()) as unknown as Human[];
 
         res.status(200).send(humans);
     } catch (error) {

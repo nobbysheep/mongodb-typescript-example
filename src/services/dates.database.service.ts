@@ -5,7 +5,7 @@ import * as dotenv from "dotenv";
 
 // Global Variables
 
-export const collections: { dates?: mongoDB.Collection } = {};
+export const datesCollections: { dates?: mongoDB.Collection } = {};
 
 // Initialize Connection
 
@@ -20,7 +20,7 @@ export async function datesConnectToDatabase(): Promise<void> {
 
     const datesCollection: mongoDB.Collection = db.collection(process.env.DATES_COLLECTION_NAME);
 
-    collections.dates = datesCollection;
+    datesCollections.dates = datesCollection;
 
     console.log(
         `Successfully connected to database: ${db.databaseName} and collection: ${datesCollection.collectionName}`,
