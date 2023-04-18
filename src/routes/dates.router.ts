@@ -40,7 +40,7 @@ datesRouter.post("/", async (req: Request, res: Response) => {
     }
 });
 
-datesRouter.post("/populate", async (req: Request, res:Response) => {
+datesRouter.get("/populate", async (req: Request, res:Response) => {
     try {
         const dateRange = getDates({
             startDate: new Date(2022, 0, 1, 0, 0),
