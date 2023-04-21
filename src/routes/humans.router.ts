@@ -10,7 +10,6 @@ import { Human } from "../models/schemas";
 export const humansRouter = express.Router();
 const collections = humansCollections;
 
-
 humansRouter.use(express.json());
 
 // GET

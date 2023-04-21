@@ -40,7 +40,7 @@ datesRouter.post("/", async (req: Request, res: Response) => {
     }
 });
 
-datesRouter.get("/populate", async (req: Request, res:Response) => {
+datesRouter.get("/populate", async (req: Request, res: Response) => {
     try {
         const dateRange = getDates({
             startDate: new Date(2022, 0, 1, 0, 0),
@@ -52,12 +52,12 @@ datesRouter.get("/populate", async (req: Request, res:Response) => {
             console.log(newDate);
             const result = await collections.dates.insertOne(newDate);
 
-        result
-            ? res.status(201).send(`Successfully created a new date with id ${result.insertedId}`)
-            : res.status(500).send("Failed to create a new date.");
+            result
+                ? res.status(201).send(`Successfully created a new date with id ${result.insertedId}`)
+                : res.status(500).send("Failed to create a new date.");
         }
     } catch (error) {
         console.error(error);
         res.status(400).send(error.message);
     }
-})
+});

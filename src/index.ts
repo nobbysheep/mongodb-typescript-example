@@ -14,7 +14,6 @@ const port = 8080; // default port to listen
 
 connectToDatabase()
     .then(() => {
-            
         app.use("/humans", humansRouter);
 
         app.use("/activities", activitiesRouter);

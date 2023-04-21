@@ -7,10 +7,9 @@ import { activitiesConnectToDatabase } from "../services/activities.database.ser
 import { catagoriesConnectToDatabase } from "../services/catagories.database.service";
 
 //
-export async function connectToDatabase(): Promise<void>
-{ 
-datesConnectToDatabase();
-activitiesConnectToDatabase();
-catagoriesConnectToDatabase();
-humansConnectToDatabase()
+export async function connectToDatabase(): Promise<void> {
+    datesConnectToDatabase();
+    activitiesConnectToDatabase();
+    catagoriesConnectToDatabase();
+    humansConnectToDatabase();
 }
