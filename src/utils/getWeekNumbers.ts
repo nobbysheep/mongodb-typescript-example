@@ -1,4 +1,4 @@
-// Get ISO week numbers
+// Get ISO week numbers taken from https://gist.github.com/TorbjornHoltmon/ecece5c1e2b5c44266f92935cb0a2352
 
 export function getWeekNumberFromISOString({ date }: { date: string }): number {
     const newYear = new Date(new Date(date).getFullYear(), 0, 1);
@@ -30,3 +30,4 @@ export function getWeekNumberFromISOString({ date }: { date: string }): number {
     }
     return weekNumber;
 }
+

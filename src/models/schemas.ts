@@ -31,5 +31,5 @@ export class Catagory {
 }
 
 export class calendarDate {
-    constructor(public fullDate: string, public wkNumber: number, public id?: ObjectId) {}
+    constructor(public fullDate: Date, public wkNumber: number, public id?: ObjectId) {}
 }
