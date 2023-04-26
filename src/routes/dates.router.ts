@@ -17,9 +17,9 @@ datesRouter.use(express.json());
 // GET
 datesRouter.get("/", async (_req: Request, res: Response) => {
     try {
-        const humans = (await collections.dates.find({}).toArray()) as unknown as calendarDate[];
+        const getDates = (await collections.dates.find({}).toArray()) as unknown as calendarDate[];
 
-        res.status(200).send(humans);
+        res.status(200).send(getDates);
     } catch (error) {
         res.status(500).send(error.message);
     }
