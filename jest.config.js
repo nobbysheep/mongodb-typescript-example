@@ -6,4 +6,5 @@ module.exports = {
     testRegex: "./src/.*\\.(test|spec)?\\.(js|ts)$",
     moduleFileExtensions: ["ts", "js", "json"],
     roots: ["<rootDir>/src"],
-};
+    preset: "@shelf/jest-mongodb"    
+}

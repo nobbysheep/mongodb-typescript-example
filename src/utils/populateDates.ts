@@ -9,5 +9,5 @@ export function populateDates({ dateArray }: { dateArray: calendarDate[] }): voi
         let weekNumSring = getWeekNumberFromISOString({ date: weekNum });
         console.log(dateArray[i]);
         console.log(weekNumSring);
+        }
     }
-}
