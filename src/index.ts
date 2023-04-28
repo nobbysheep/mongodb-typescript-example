@@ -3,7 +3,6 @@ import express from "express";
 // External dependancies
 import { catagoriesRouter } from "./routes/catagories.router";
 import { humansRouter } from "./routes/humans.router";
-import { getDates } from "./utils/dates";
 import { populateDates } from "./utils/populateDates";
 import { activitiesRouter } from "./routes/activities.router";
 import { datesRouter } from "./routes/dates.router";

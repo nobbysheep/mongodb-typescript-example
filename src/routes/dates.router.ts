@@ -5,7 +5,8 @@ import { ObjectId } from "mongodb";
 import { datesCollections } from "../services/dates.database.service";
 import { calendarDate } from "../models/schemas";
 import { populateDates } from "../utils/populateDates";
-import { getDates } from "../utils/dates";
+import { getDates } from "../utils/getDates";
+import { convertDates } from "../utils/convertDates";
 
 // Global Config
 
@@ -43,6 +44,8 @@ datesRouter.post("/", async (req: Request, res: Response) => {
 // using GET for testing - replace with POST when we're ready
 datesRouter.get("/populate", async (req: Request, res: Response) => {
     try {
+        const tmpPoop = populateDates();
+        console.log(tmpPoop);
         const newDate = req.body as calendarDate;
         const result = await collections.dates.insertOne(newDate);
 
@@ -53,4 +56,4 @@ datesRouter.get("/populate", async (req: Request, res: Response) => {
         console.error(error);
         res.status(400).send(error.message);
     }
-}); 
+});

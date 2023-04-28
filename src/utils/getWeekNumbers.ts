@@ -30,4 +30,3 @@ export function getWeekNumberFromISOString({ date }: { date: string }): number {
     }
     return weekNumber;
 }
-

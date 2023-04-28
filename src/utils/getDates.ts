@@ -1,4 +1,4 @@
-// Dates generation
+// Dates generation returns an array of dates between two dates
 
 export function getDates({ startDate, endDate }: { startDate: Date; endDate: Date }): Date[] {
     const dates = [];
