@@ -2,36 +2,36 @@
 
 import express, { Request, Response } from "express";
 import { ObjectId } from "mongodb";
-import { activitiesCollections } from "../services/activities.database.service";
-import { Activities } from "../models/schemas";
+import { activityCollections } from "../services/activity.database.service";
+import { Activity } from "../models/schemas";
 
 // Global Config
 
-export const activitiesRouter = express.Router();
-const collections = activitiesCollections;
+export const activityRouter = express.Router();
+const collections = activityCollections;
 
-activitiesRouter.use(express.json());
+activityRouter.use(express.json());
 
 // GET
-activitiesRouter.get("/", async (_req: Request, res: Response) => {
+activityRouter.get("/", async (_req: Request, res: Response) => {
     try {
-        const activities = (await collections.activities.find({}).toArray()) as unknown as Activities[];
+        const activity = (await collections.activity.find({}).toArray()) as unknown as Activity[];
 
-        res.status(200).send(activities);
+        res.status(200).send(activity);
     } catch (error) {
         res.status(500).send(error.message);
     }
 });
 
-activitiesRouter.get("/:id", async (req: Request, res: Response) => {
+activityRouter.get("/:id", async (req: Request, res: Response) => {
     const id = req?.params?.id;
 
     try {
         const query = { _id: new ObjectId(id) };
-        const activities = (await collections.activities.findOne(query)) as unknown as Activities;
+        const activity = (await collections.activity.findOne(query)) as unknown as Activity;
 
-        if (activities) {
-            res.status(200).send(activities);
+        if (activity) {
+            res.status(200).send(activity);
         }
     } catch (error) {
         res.status(404).send(`Unable to find matching document with id: ${req.params.id}`);
@@ -39,10 +39,10 @@ activitiesRouter.get("/:id", async (req: Request, res: Response) => {
 });
 
 // POST
-activitiesRouter.post("/", async (req: Request, res: Response) => {
+activityRouter.post("/", async (req: Request, res: Response) => {
     try {
-        const newActivity = req.body as Activities;
-        const result = await collections.activities.insertOne(newActivity);
+        const newActivity = req.body as Activity;
+        const result = await collections.activity.insertOne(newActivity);
 
         result
             ? res.status(201).send(`Successfully created a new activitiy with id ${result.insertedId}`)
@@ -54,14 +54,14 @@ activitiesRouter.post("/", async (req: Request, res: Response) => {
 });
 
 // PUT
-activitiesRouter.put("/:id", async (req: Request, res: Response) => {
+activityRouter.put("/:id", async (req: Request, res: Response) => {
     const id = req?.params?.id;
 
     try {
-        const updatedActivity: Activities = req.body as Activities;
+        const updatedActivity: Activity = req.body as Activity;
         const query = { _id: new ObjectId(id) };
 
-        const result = await collections.activities.updateOne(query, { $set: updatedActivity });
+        const result = await collections.activity.updateOne(query, { $set: updatedActivity });
 
         result
             ? res.status(200).send(`Successfully updated Activity with id ${id}`)
@@ -73,12 +73,12 @@ activitiesRouter.put("/:id", async (req: Request, res: Response) => {
 });
 
 // DELETE
-activitiesRouter.delete("/:id", async (req: Request, res: Response) => {
+activityRouter.delete("/:id", async (req: Request, res: Response) => {
     const id = req?.params?.id;
 
     try {
         const query = { _id: new ObjectId(id) };
-        const result = await collections.activities.deleteOne(query);
+        const result = await collections.activity.deleteOne(query);
 
         if (result && result.deletedCount) {
             res.status(202).send(`Successfully removed activity with id ${id}`);

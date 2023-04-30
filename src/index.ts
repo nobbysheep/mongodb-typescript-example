@@ -1,19 +1,25 @@
 import express from "express";
+import * as dotenv from "dotenv";
 
 // External dependancies
 import { catagoriesRouter } from "./routes/catagories.router";
 import { humansRouter } from "./routes/humans.router";
 import { populateDates } from "./utils/populateDates";
 import { activitiesRouter } from "./routes/activities.router";
+import { activityRouter } from "./routes/activity.router";
 import { datesRouter } from "./routes/dates.router";
 import { connectToDatabase } from "./utils/connectToDatabase";
 
+dotenv.config(); // load env config from .env file
+
 const app = express();
-const port = 8080; // default port to listen
+const port = process.env.PORT; // default port to listen
 
 connectToDatabase()
     .then(() => {
         app.use("/humans", humansRouter);
+
+        app.use("/activity", activityRouter);
 
         app.use("/activities", activitiesRouter);
 

@@ -14,10 +14,10 @@ export function populateDates(): string[] {
     // Convert dates array to ISO strings and add ISO week numbers
     const tmpArray = [];
     for (let i = 0; i < dateArray.length; i++) {
-        let tmpISO = dateArray[i].toISOString();
-        let weekNum = weekNumber(dateArray[i]);
-        tmpArray.push(JSON.stringify({ fullDate: tmpISO, weekNum: weekNum }));
-        console.log(tmpArray[i]);
+        let tmpISO: string = dateArray[i].toISOString();
+        let weekNum: string = String(weekNumber(dateArray[i]));
+        tmpArray.push(tmpISO, weekNum);
+        //console.log(tmpArray[i]);
     }
     return tmpArray;
 }

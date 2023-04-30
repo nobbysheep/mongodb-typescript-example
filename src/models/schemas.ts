@@ -10,7 +10,6 @@ export class Human {
         public typeOfHuman: string,
         public teamOfHuman: string,
         public fteOfHuman: number,
-        public activityOfHuman: string,
         public id?: ObjectId,
     ) {}
 }
@@ -19,7 +18,15 @@ export class Activity {
     constructor(
         public activityName: string,
         public activityDescription: string,
-        public activityCatagory: string,
+        public catagoryID: string,
+        public id?: ObjectId,
+    ) {}
+}
+
+export class Activities {
+    constructor(
+        public humanID: ObjectId, // links to human table
+        public activityID: ObjectId, // links to activity table
         public activityDate: Date,
         public activityDurationHours: number,
         public id?: ObjectId,
@@ -27,9 +34,17 @@ export class Activity {
 }
 
 export class Catagory {
-    constructor(public catagoryName: string, public catagoryDescription: string, public id?: ObjectId) {}
+    constructor(
+        public catagoryName: string, 
+        public catagoryDescription: string, 
+        public id?: ObjectId
+    ) {}
 }
 
 export class calendarDate {
-    constructor(public fullDate: string, public wkNumber: number, public id?: ObjectId) {}
+    constructor(
+        public fullDate: string, 
+        public wkNumber: number, 
+        public id?: ObjectId
+    ) {}
 }
