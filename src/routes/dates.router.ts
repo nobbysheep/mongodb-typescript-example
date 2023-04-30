@@ -43,17 +43,20 @@ datesRouter.post("/", async (req: Request, res: Response) => {
 
 // using GET for testing - replace with POST when we're ready
 datesRouter.get("/populate", async (req: Request, res: Response) => {
-    try {
-        const tmpPoop = populateDates();
-        console.log(tmpPoop);
-        const newDate = req.body as calendarDate;
-        const result = await collections.dates.insertOne(newDate);
+    const tmpArray = populateDates();
+    console.log(tmpArray);
+    for (let i = 0; i < tmpArray.length; i++) {        
+        try {
+            req.body = tmpArray[i];
+            const newDate = req.body as calendarDate;
+            const result = await collections.dates.insertOne(newDate);
 
-        result
-            ? res.status(201).send(`Successfully created a new date with id ${result.insertedId}`)
-            : res.status(500).send("Failed to create a new date.");
-    } catch (error) {
-        console.error(error);
-        res.status(400).send(error.message);
+            result
+                ? res.status(201).send(`Successfully created a new date with id ${result.insertedId}`)
+                : res.status(500).send("Failed to create a new date.");
+        } catch (error) {
+            console.error(error);
+            res.status(400).send(error.message);
+        }
     }
 });

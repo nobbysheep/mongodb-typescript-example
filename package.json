@@ -26,7 +26,8 @@
         "dotenv": "^10.0.0",
         "express": "^4.17.1",
         "mongodb": "^5.2.0",
-        "mongodb-memory-server": "^8.12.2"
+        "mongodb-memory-server": "^8.12.2",
+        "weeknumber": "^1.2.1"
     },
     "devDependencies": {
         "@shelf/jest-mongodb": "^4.1.7",
