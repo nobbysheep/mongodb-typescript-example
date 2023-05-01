@@ -9,7 +9,7 @@ export function populateDates(): (string|number)[] {
     // Build initial array with dates
     const dateArray: Date[] = getDates({
         startDate: new Date(2022, 0, 1, 0, 0),
-        endDate: new Date(2022, 1, 31, 23, 59, 59),
+        endDate: new Date(2022, 3, 31, 23, 59, 59),
     });
     // Convert dates array to ISO strings and add ISO week numbers
     let tmpISO = dateArray[0].toISOString();
