@@ -4,7 +4,6 @@ import * as dotenv from "dotenv";
 // External dependancies
 import { catagoriesRouter } from "./routes/catagories.router";
 import { humansRouter } from "./routes/humans.router";
-import { populateDates } from "./utils/populateDates";
 import { activitiesRouter } from "./routes/activities.router";
 import { activityRouter } from "./routes/activity.router";
 import { datesRouter } from "./routes/dates.router";

@@ -4,9 +4,9 @@ import express, { Request, Response } from "express";
 import { ObjectId } from "mongodb";
 import { datesCollections } from "../services/dates.database.service";
 import { calendarDate } from "../models/schemas";
-import { populateDates } from "../utils/populateDates";
 import { getDates } from "../utils/getDates";
 import { convertDates } from "../utils/convertDates";
+import { getDatesAndWeekNumbers } from "../utils/getDatesAndWeekNumbers";
 
 // Global Config
 
@@ -42,20 +42,30 @@ datesRouter.post("/", async (req: Request, res: Response) => {
 });
 
 datesRouter.post("/populate", async (req: Request, res: Response) => {
-    const tmpArray: (string|number)[] = populateDates();
+    //const tmpArray: (Date|number)[] = populateDates();
+    type dateAndWeekNumber = {
+        fullDate: Date;
+        weekNumber: number;
+    };
+    const tmpArray: dateAndWeekNumber[] = getDatesAndWeekNumbers({
+        startDate: new Date(2022, 0, 1),
+        endDate: new Date(2022, 2, 31),
+    });
     const restultsArray = [];
     try {
-        for (let i = 0; i < tmpArray.length; i++) {    
-            const newDate = { fullDate: tmpArray[i], wkNumber: tmpArray[i+1] } as calendarDate;
+        for (let i = 0; i < tmpArray.length; i++) {
+            let tmpDate = tmpArray[i].fullDate;
+            let tmpWeekNumber = tmpArray[i].weekNumber;
+            const newDate = { fullDate: tmpDate, wkNumber: tmpWeekNumber } as calendarDate;
             const result = await collections.dates.insertOne(newDate);
-            restultsArray[i] = result.insertedId;
-            i++;
-                
-        //result
-        //    ? res.status(201).send(`Successfully created a new date with id ${result.insertedId}`)
-        //    : res.status(500).send("Failed to create a new date.");
-            } 
-            res.status(201).send(`Successfully created a new date with id ${restultsArray}`)
+
+            result ? restultsArray.push(result.insertedId) : restultsArray.push("bad thing");
+
+            //result
+            //    ? res.status(201).send(`Successfully created a new date with id ${result.insertedId}`)
+            //    : res.status(500).send("Failed to create a new date.");
+        }
+        res.status(201).send(`Successfully created a new date with id ${restultsArray}`);
     } catch (error) {
         console.error(error);
         res.status(400).send(error.message);

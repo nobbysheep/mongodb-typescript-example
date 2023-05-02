@@ -34,17 +34,9 @@ export class Activities {
 }
 
 export class Catagory {
-    constructor(
-        public catagoryName: string, 
-        public catagoryDescription: string, 
-        public id?: ObjectId
-    ) {}
+    constructor(public catagoryName: string, public catagoryDescription: string, public id?: ObjectId) {}
 }
 
 export class calendarDate {
-    constructor(
-        public fullDate: string, 
-        public wkNumber: number, 
-        public id?: ObjectId
-    ) {}
+    constructor(public fullDate: Date, public wkNumber: number, public id?: ObjectId) {}
 }
