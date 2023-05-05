@@ -8,7 +8,7 @@ import { catagoriesConnectToDatabase } from "../services/catagories.database.ser
 import { activityConnectToDatabase } from "../services/activity.database.service";
 
 //
-export async function connectToDatabase(): Promise<void> {
+export async function connectToDatabase(): Promise<any> {
     datesConnectToDatabase();
     activitiesConnectToDatabase();
     activityConnectToDatabase();

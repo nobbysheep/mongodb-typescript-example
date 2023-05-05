@@ -41,12 +41,12 @@ activitiesRouter.get("/:id", async (req: Request, res: Response) => {
 // POST
 activitiesRouter.post("/", async (req: Request, res: Response) => {
     try {
-        const newActivity = req.body as Activities;
-        const result = await collections.activities.insertOne(newActivity);
+        const newActivities = req.body as Activities;
+        const result = await collections.activities.insertOne(newActivities);
 
         result
-            ? res.status(201).send(`Successfully created a new activitiy with id ${result.insertedId}`)
-            : res.status(500).send("Failed to create a new activity.");
+            ? res.status(201).send(`Successfully created a new activitities with id ${result.insertedId}`)
+            : res.status(500).send("Failed to create a new activities.");
     } catch (error) {
         console.error(error);
         res.status(400).send(error.message);
@@ -58,14 +58,14 @@ activitiesRouter.put("/:id", async (req: Request, res: Response) => {
     const id = req?.params?.id;
 
     try {
-        const updatedActivity: Activities = req.body as Activities;
+        const updatedActivities: Activities = req.body as Activities;
         const query = { _id: new ObjectId(id) };
 
-        const result = await collections.activities.updateOne(query, { $set: updatedActivity });
+        const result = await collections.activities.updateOne(query, { $set: updatedActivities });
 
         result
-            ? res.status(200).send(`Successfully updated Activity with id ${id}`)
-            : res.status(304).send(`Activity with id: ${id} not updated`);
+            ? res.status(200).send(`Successfully updated Activities with id ${id}`)
+            : res.status(304).send(`Activities with id: ${id} not updated`);
     } catch (error) {
         console.error(error.message);
         res.status(400).send(error.message);
@@ -81,11 +81,11 @@ activitiesRouter.delete("/:id", async (req: Request, res: Response) => {
         const result = await collections.activities.deleteOne(query);
 
         if (result && result.deletedCount) {
-            res.status(202).send(`Successfully removed activity with id ${id}`);
+            res.status(202).send(`Successfully removed activities with id ${id}`);
         } else if (!result) {
-            res.status(400).send(`Failed to remove activity with id ${id}`);
+            res.status(400).send(`Failed to remove activities with id ${id}`);
         } else if (!result.deletedCount) {
-            res.status(404).send(`Activity with id ${id} does not exist`);
+            res.status(404).send(`Activities with id ${id} does not exist`);
         }
     } catch (error) {
         console.error(error.message);

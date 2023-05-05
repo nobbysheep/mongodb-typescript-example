@@ -42,16 +42,19 @@ datesRouter.post("/", async (req: Request, res: Response) => {
 });
 
 datesRouter.post("/populate", async (req: Request, res: Response) => {
-    //const tmpArray: (Date|number)[] = populateDates();
+    
     type dateAndWeekNumber = {
         fullDate: Date;
         weekNumber: number;
     };
+
     const tmpArray: dateAndWeekNumber[] = getDatesAndWeekNumbers({
-        startDate: new Date(2022, 0, 1),
-        endDate: new Date(2022, 2, 31),
+        startDate: new Date(2023, 0, 1),
+        endDate: new Date(2023, 11, 31),
     });
+    
     const restultsArray = [];
+
     try {
         for (let i = 0; i < tmpArray.length; i++) {
             let tmpDate = tmpArray[i].fullDate;
@@ -59,13 +62,11 @@ datesRouter.post("/populate", async (req: Request, res: Response) => {
             const newDate = { fullDate: tmpDate, wkNumber: tmpWeekNumber } as calendarDate;
             const result = await collections.dates.insertOne(newDate);
 
-            result ? restultsArray.push(result.insertedId) : restultsArray.push("bad thing");
+            restultsArray.push(result.insertedId);
+            }
 
-            //result
-            //    ? res.status(201).send(`Successfully created a new date with id ${result.insertedId}`)
-            //    : res.status(500).send("Failed to create a new date.");
-        }
-        res.status(201).send(`Successfully created a new date with id ${restultsArray}`);
+        res.status(201).send(`Successfully created a new dates with ids ${restultsArray}`);
+    
     } catch (error) {
         console.error(error);
         res.status(400).send(error.message);

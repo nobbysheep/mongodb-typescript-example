@@ -14,6 +14,7 @@ export function getDatesAndWeekNumbers({
     startDate: Date;
     endDate: Date;
 }): dateAndWeekNumber[] {
+    
     const dates: dateAndWeekNumber[] = [];
     let currentDate = startDate;
     const addDays = (currentDate: Date, days: number) => {
@@ -26,5 +27,6 @@ export function getDatesAndWeekNumbers({
         dates.push({ fullDate: currentDate, weekNumber: tmpWeekNumber });
         currentDate = addDays(currentDate, 1);
     }
+    console.log(dates);
     return dates;
 }
