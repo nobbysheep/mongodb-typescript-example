@@ -11,7 +11,7 @@ import { connectToDatabase } from "./utils/connectToDatabase";
 
 dotenv.config(); // load env config from .env file
 
-const app: Application = express();
+const app = express();
 const port = process.env.PORT; // default port to listen
 export default app;
 
