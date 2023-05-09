@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Application } from "express";
 import * as dotenv from "dotenv";
 
 // External dependancies
@@ -11,8 +11,9 @@ import { connectToDatabase } from "./utils/connectToDatabase";
 
 dotenv.config(); // load env config from .env file
 
-const app = express();
+const app: Application = express();
 const port = process.env.PORT; // default port to listen
+export default app;
 
 connectToDatabase()
     .then(() => {
@@ -33,8 +34,10 @@ connectToDatabase()
         app.listen(port, () => {
             console.log(`Server started at http://localhost:${port}`);
         });
+
     })
     .catch((error: Error) => {
         console.error("Database connection failed", error);
         process.exit();
     });
+
