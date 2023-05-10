@@ -4,8 +4,6 @@ import express, { Request, Response } from "express";
 import { ObjectId } from "mongodb";
 import { datesCollections } from "../services/dates.database.service";
 import { calendarDate } from "../models/schemas";
-import { getDates } from "../utils/getDates";
-import { convertDates } from "../utils/convertDates";
 import { getDatesAndWeekNumbers } from "../utils/getDatesAndWeekNumbers";
 
 // Global Config
@@ -42,7 +40,6 @@ datesRouter.post("/", async (req: Request, res: Response) => {
 });
 
 datesRouter.post("/populate", async (req: Request, res: Response) => {
-    
     type dateAndWeekNumber = {
         fullDate: Date;
         weekNumber: number;
@@ -52,7 +49,7 @@ datesRouter.post("/populate", async (req: Request, res: Response) => {
         startDate: new Date(2023, 0, 1),
         endDate: new Date(2023, 11, 31),
     });
-    
+
     const restultsArray = [];
 
     try {
@@ -63,10 +60,9 @@ datesRouter.post("/populate", async (req: Request, res: Response) => {
             const result = await collections.dates.insertOne(newDate);
 
             restultsArray.push(result.insertedId);
-            }
+        }
 
         res.status(201).send(`Successfully created a new dates with ids ${restultsArray}`);
-    
     } catch (error) {
         console.error(error);
         res.status(400).send(error.message);
