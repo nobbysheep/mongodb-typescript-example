@@ -18,7 +18,7 @@ export class Activity {
     constructor(
         public activityName: string,
         public activityDescription: string,
-        public catagoryID: string,
+        public catagoryID: ObjectId,
         public id?: ObjectId,
     ) {}
 }
