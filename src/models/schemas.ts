@@ -40,3 +40,7 @@ export class Catagory {
 export class calendarDate {
     constructor(public fullDate: Date, public wkNumber: number, public id?: ObjectId) {}
 }
+
+export class CalendarForHuman {
+    constructor(public fullDate: Date, public wkNumber: number, public activityName: string, public catagoryName: string){}
+}
