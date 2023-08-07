@@ -3,7 +3,7 @@
 import express, { Request, Response } from "express";
 import { ObjectId } from "mongodb";
 import { datesCollections } from "../services/dates.database.service";
-import { calendarDate } from "../models/schemas";
+import { CalendarDate } from "../models/schemas";
 import { getDatesAndWeekNumbers } from "../utils/getDatesAndWeekNumbers";
 
 // Global Config
@@ -16,7 +16,7 @@ datesRouter.use(express.json());
 // GET
 datesRouter.get("/", async (_req: Request, res: Response) => {
     try {
-        const getDates = (await collections.dates.find({}).toArray()) as unknown as calendarDate[];
+        const getDates = (await collections.dates.find({}).toArray()) as unknown as CalendarDate[];
 
         res.status(200).send(getDates);
     } catch (error) {
@@ -27,7 +27,7 @@ datesRouter.get("/", async (_req: Request, res: Response) => {
 // POST
 datesRouter.post("/", async (req: Request, res: Response) => {
     try {
-        const newDate = req.body as calendarDate;
+        const newDate = req.body as CalendarDate;
         const result = await collections.dates.insertOne(newDate);
 
         result
@@ -56,7 +56,7 @@ datesRouter.post("/populate", async (req: Request, res: Response) => {
         for (let i = 0; i < tmpArray.length; i++) {
             let tmpDate = tmpArray[i].fullDate;
             let tmpWeekNumber = tmpArray[i].weekNumber;
-            const newDate = { fullDate: tmpDate, wkNumber: tmpWeekNumber } as calendarDate;
+            const newDate = { fullDate: tmpDate, wkNumber: tmpWeekNumber } as CalendarDate;
             const result = await collections.dates.insertOne(newDate);
 
             restultsArray.push(result.insertedId);

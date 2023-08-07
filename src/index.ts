@@ -8,6 +8,7 @@ import { activitiesRouter } from "./routes/activities.router";
 import { activityRouter } from "./routes/activity.router";
 import { datesRouter } from "./routes/dates.router";
 import { connectToDatabase } from "./utils/connectToDatabase";
+import { calendarForHumanRouter } from "./routes/calander.router";
 
 dotenv.config(); // load env config from .env file
 
@@ -26,6 +27,8 @@ connectToDatabase()
         app.use("/catagories", catagoriesRouter);
 
         app.use("/dates", datesRouter);
+
+        app.use("/calendarforhumans", calendarForHumanRouter)
 
         app.use("/", (req, res) => {
             res.send("Hello world!");
