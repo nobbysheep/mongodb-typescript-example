@@ -28,7 +28,7 @@ connectToDatabase()
 
         app.use("/dates", datesRouter);
 
-        app.use("/calendarforhumans", calendarForHumanRouter)
+        app.use("/calendarforhumans", calendarForHumanRouter);
 
         app.use("/", (req, res) => {
             res.send("Hello world!");
