@@ -5,7 +5,6 @@ import { Collection, ObjectId } from "mongodb";
 import { activitiesCollections } from "../services/activities.database.service";
 import { Activities } from "../models/schemas";
 import { CalendarForHuman } from "../models/schemas";
-import { CalendarForHumanList } from "../models/schemas";
 import { catagoriesCollections } from "../services/catagories.database.service";
 import { Catagory } from "../models/schemas";
 import { datesCollections } from "../services/dates.database.service";
