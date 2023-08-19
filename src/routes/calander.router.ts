@@ -34,29 +34,28 @@ calendarForHumanRouter.get("/", async (_req: Request, res: Response) => {
         const restultsArray: tmpArray[] = [];
 
         for (let i = 0; i < dates.length; i++) {
-            let tmpDate: Date = dates[i].fullDate;
-            let tmpWkNumber = dates[i].wkNumber;
-            let tmpActivityName = "";
-            let tmpActivityDurationHours = 0;
-            let tmpHumanName = "";
-            let tmpCatagoryName = "";
+            const tmpDate: Date = dates[i].fullDate;
+            const tmpWkNumber: number = dates[i].wkNumber;
+            const tmpActivityName: string = "";
+            const tmpActivityDurationHours: number = 0;
+            const tmpHumanName: string = "";
+            const tmpCatagoryName: string = "";
 
-            const query1 = { activityDate: new Date(tmpDate) };
+            const query1 = { activityDateID: new ObjectId(dates[i].id) };
             const activities = (await activitiesCollection.activities.findOne(query1)) as unknown as Activities;
-
             if (activities) {
                 const activityID = activities.activityID;
                 const humanID = activities.humanID;
-                tmpActivityDurationHours = activities.activityDurationHours;
+                let tmpActivityDurationHours = activities.activityDurationHours;
                 const query2 = { _id: new ObjectId(activityID) };
                 const activity = (await activityCollection.activity.findOne(query2)) as unknown as Activity;
-                tmpActivityName = activity.activityName;
+                let tmpActivityName = activity.activityName;
                 const query3 = { _id: new ObjectId(humanID) };
                 const human = (await humansCollection.humans.findOne(query3)) as unknown as Human;
-                tmpHumanName = human.nameOfHuman;
+                let tmpHumanName = human.nameOfHuman;
                 const query4 = { _id: new ObjectId(activity.catagoryID) };
                 const catagories = (await catagoriesCollection.catagories.findOne(query4)) as unknown as Catagory;
-                tmpCatagoryName = catagories.catagoryName;
+                let tmpCatagoryName = catagories.catagoryName;
             }
 
             restultsArray.push({

@@ -27,7 +27,7 @@ export class Activities {
     constructor(
         public humanID: ObjectId, // links to human table
         public activityID: ObjectId, // links to activity table
-        public activityDate: Date,
+        public activityDateID: ObjectId,
         public activityDurationHours: number,
         public id?: ObjectId,
     ) {}

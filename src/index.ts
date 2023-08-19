@@ -9,6 +9,8 @@ import { activityRouter } from "./routes/activity.router";
 import { datesRouter } from "./routes/dates.router";
 import { connectToDatabase } from "./utils/connectToDatabase";
 import { calendarForHumanRouter } from "./routes/calander.router";
+import { loadDates } from "./utils/loadDates";
+import { CalendarDate } from "./models/schemas";
 
 dotenv.config(); // load env config from .env file
 
@@ -35,6 +37,7 @@ connectToDatabase()
         });
 
         app.listen(port, () => {
+            console.log(loadDates());
             console.log(`Server started at http://localhost:${port}`);
         });
     })
