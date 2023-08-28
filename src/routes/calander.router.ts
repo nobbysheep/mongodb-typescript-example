@@ -13,6 +13,7 @@ import { activityCollections } from "../services/activity.database.service";
 import { Activity } from "../models/schemas";
 import { humansCollections } from "../services/humans.database.service";
 import { Human } from "../models/schemas";
+import { loadDates } from "../utils/loadDates";
 
 // Global Config
 
@@ -34,8 +35,9 @@ calendarForHumanRouter.get("/", async (_req: Request, res: Response) => {
         const restultsArray: tmpArray[] = [];
 
         for (let i = 0; i < dates.length; i++) {
-            const tmpDate: Date = dates[i].fullDate;
-            const tmpWkNumber: number = dates[i].wkNumber;
+            let tmpDate: Date = dates[i].fullDate;
+            let tmpWkNumber: number = dates[i].wkNumber;
+            const tmpDateID = dates[i].id;
             const tmpActivityName: string = "";
             const tmpActivityDurationHours: number = 0;
             const tmpHumanName: string = "";
@@ -44,10 +46,10 @@ calendarForHumanRouter.get("/", async (_req: Request, res: Response) => {
             const query1 = { activityDateID: new ObjectId(dates[i].id) };
             const activities = (await activitiesCollection.activities.findOne(query1)) as unknown as Activities;
             if (activities) {
-                const activityID = activities.activityID;
+                const activitiesID = activities.activitiesID;
                 const humanID = activities.humanID;
-                let tmpActivityDurationHours = activities.activityDurationHours;
-                const query2 = { _id: new ObjectId(activityID) };
+                let tmpActivityDurationHours = activities.activitiesDurationHours;
+                const query2 = { _id: new ObjectId(activitiesID) };
                 const activity = (await activityCollection.activity.findOne(query2)) as unknown as Activity;
                 let tmpActivityName = activity.activityName;
                 const query3 = { _id: new ObjectId(humanID) };

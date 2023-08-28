@@ -18,17 +18,17 @@ export class Activity {
     constructor(
         public activityName: string,
         public activityDescription: string,
-        public catagoryID: ObjectId,
+        public catagoryID: string,
         public id?: ObjectId,
     ) {}
 }
 
 export class Activities {
     constructor(
-        public humanID: ObjectId, // links to human table
-        public activityID: ObjectId, // links to activity table
-        public activityDateID: ObjectId,
-        public activityDurationHours: number,
+        public humanID: string, // links to human table
+        public activitiesID: string, // links to activity table
+        public activitiesDateID: string, // links to dates table
+        public activitiesDurationHours: number,
         public id?: ObjectId,
     ) {}
 }

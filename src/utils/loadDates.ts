@@ -6,7 +6,7 @@ import { promises } from "stream";
 
 const collections = datesCollections;
 
-export async function loadDates() {
+export async function loadDates(): Promise<CalendarDate[]> {
     try {
         const getDates = (await collections.dates.find({}).toArray()) as unknown as CalendarDate[];
         return (getDates);

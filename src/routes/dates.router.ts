@@ -54,8 +54,8 @@ datesRouter.post("/populate", async (req: Request, res: Response) => {
 
     try {
         for (let i = 0; i < tmpArray.length; i++) {
-            let tmpDate: Date = tmpArray[i].fullDate;
-            let tmpWeekNumber: number = tmpArray[i].weekNumber;
+            const tmpDate: Date = tmpArray[i].fullDate;
+            const tmpWeekNumber: number = tmpArray[i].weekNumber;
             const newDate = { fullDate: tmpDate, wkNumber: tmpWeekNumber } as CalendarDate;
             const result = await collections.dates.insertOne(newDate);
 

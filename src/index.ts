@@ -37,7 +37,6 @@ connectToDatabase()
         });
 
         app.listen(port, () => {
-            console.log(loadDates());
             console.log(`Server started at http://localhost:${port}`);
         });
     })
